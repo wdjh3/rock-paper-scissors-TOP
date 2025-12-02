@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
     const computerChoiceIndex = Math.floor(Math.random() * 3);
     
@@ -9,3 +12,45 @@ function getComputerChoice() {
         return "scissors";
     }
 }
+
+function getHumanChoice() {
+    const humanChoice = (prompt("Rock, paper or scissors?")).toLowerCase();
+    return humanChoice;
+}
+
+function playRound(humanChoice , computerChoice) {
+    if (
+        humanChoice === "rock" && computerChoice === "scissors" ||
+        humanChoice === "paper" && computerChoice === "rock" ||
+        humanChoice === "scissors" && computerChoice === "paper"
+    ) {
+        console.log(`You win! ${capitalise(humanChoice)} beats ${capitalise(computerChoice)}!`);
+        humanScore++;
+    } else if (
+        humanChoice === "rock" && computerChoice === "rock" ||
+        humanChoice === "paper" && computerChoice === "paper" ||
+        humanChoice === "scissors" && computerChoice === "scissors"
+    ) {
+        console.log(`Draw! ${capitalise(humanChoice)} ties with ${capitalise(computerChoice)}!`);
+    } else if (
+        humanChoice === "rock" && computerChoice === "paper" ||
+        humanChoice === "paper" && computerChoice === "scissors" ||
+        humanChoice === "scissors" && computerChoice === "rock"
+    ) {
+        console.log(`You lose! ${capitalise(humanChoice)} gets defeated by ${capitalise(computerChoice)}!`);
+        computerScore++;
+    }
+}
+
+function capitalise(string) {
+    const firstLetter = string.charAt(0).toUpperCase();
+    const afterFirstLetter = string.slice(1).toLowerCase();
+
+    return firstLetter + afterFirstLetter;
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
+console.log(humanScore + " " + computerScore);
