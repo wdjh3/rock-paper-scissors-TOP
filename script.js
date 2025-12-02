@@ -1,6 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
 
+playGame();
+
 function getComputerChoice() {
     const computerChoiceIndex = Math.floor(Math.random() * 3);
     
@@ -49,8 +51,12 @@ function capitalise(string) {
     return firstLetter + afterFirstLetter;
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    for (let i = 0 ; i < 5 ; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
-console.log(humanScore + " " + computerScore);
+        playRound(humanSelection, computerSelection);
+        console.log("Score: " + humanScore + " Computer Score: " + computerScore);
+    }
+}
