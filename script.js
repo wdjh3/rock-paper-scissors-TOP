@@ -1,5 +1,10 @@
 let humanScore = 0;
 let computerScore = 0;
+const btn = document.querySelectorAll("button");
+
+btn.forEach((button) => {
+    button.addEventListener('click', playRound);
+})
 
 function getComputerChoice() {
     const computerChoiceIndex = Math.floor(Math.random() * 3);
