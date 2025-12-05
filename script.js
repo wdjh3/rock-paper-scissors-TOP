@@ -1,6 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
 const btn = document.querySelectorAll("button");
+const result = document.querySelector("#result");
 
 btn.forEach((button) => {
     button.addEventListener('click', playRound);
@@ -29,20 +30,20 @@ function playRound(humanChoice , computerChoice) {
         humanChoice === "paper" && computerChoice === "rock" ||
         humanChoice === "scissors" && computerChoice === "paper"
     ) {
-        console.log(`You win! ${capitalise(humanChoice)} beats ${capitalise(computerChoice)}!`);
+        result.textContent = `You win! ${capitalise(humanChoice)} beats ${capitalise(computerChoice)}!`;
         humanScore++;
     } else if (
         humanChoice === "rock" && computerChoice === "rock" ||
         humanChoice === "paper" && computerChoice === "paper" ||
         humanChoice === "scissors" && computerChoice === "scissors"
     ) {
-        console.log(`Draw! ${capitalise(humanChoice)} ties with ${capitalise(computerChoice)}!`);
+        result.textContent = `Draw! ${capitalise(humanChoice)} ties with ${capitalise(computerChoice)}!`;
     } else if (
         humanChoice === "rock" && computerChoice === "paper" ||
         humanChoice === "paper" && computerChoice === "scissors" ||
         humanChoice === "scissors" && computerChoice === "rock"
     ) {
-        console.log(`You lose! ${capitalise(humanChoice)} gets defeated by ${capitalise(computerChoice)}!`);
+        result.textContent = `You lose! ${capitalise(humanChoice)} gets defeated by ${capitalise(computerChoice)}!`;
         computerScore++;
     }
 }
@@ -52,4 +53,20 @@ function capitalise(string) {
     const afterFirstLetter = string.slice(1).toLowerCase();
 
     return firstLetter + afterFirstLetter;
+}
+
+function checkGameWin() {
+    let winScore = 5;
+    if (humanScore >= winScore && computerScore >= winScore) {
+        result.textContent += "\nSomething's not right..."
+        return;
+    }
+
+    if (humanScore >= winScore) {
+        result.textContent += "\nPlayer Wins!"
+    }
+
+    if (computerScore >= winScore) {
+        result.textContent += "\nComputer Wins!"
+    }
 }
