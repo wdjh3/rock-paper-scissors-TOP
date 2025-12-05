@@ -4,7 +4,10 @@ const btn = document.querySelectorAll("button");
 const result = document.querySelector("#result");
 
 btn.forEach((button) => {
-    button.addEventListener('click', playRound);
+    button.addEventListener('click', () => {
+        playRound();
+        checkGameWin();
+    });
 })
 
 function getComputerChoice() {
