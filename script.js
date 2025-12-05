@@ -4,8 +4,10 @@ const btn = document.querySelectorAll("button");
 const result = document.querySelector("#result");
 
 btn.forEach((button) => {
-    button.addEventListener('click', () => {
-        playRound();
+    button.addEventListener('click', (event) => {
+        let humanChoice = event.target.textContent.toLowerCase();
+        let computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
         checkGameWin();
     });
 })
@@ -20,11 +22,6 @@ function getComputerChoice() {
     } else if (computerChoiceIndex === 2) {
         return "scissors";
     }
-}
-
-function getHumanChoice() {
-    const humanChoice = (prompt("Rock, paper or scissors?")).toLowerCase();
-    return humanChoice;
 }
 
 function playRound(humanChoice , computerChoice) {
